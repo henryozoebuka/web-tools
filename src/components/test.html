@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chmod Calculator</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    .checkbox-group {
+      margin-bottom: 10px;
+    }
+
+    .result {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="checkbox-group">
+    <label><strong>Owner</strong></label>
+    <div><input type="checkbox" class="owner" value="4"> Read</div>
+    <div><input type="checkbox" class="owner" value="2"> Write</div>
+    <div><input type="checkbox" class="owner" value="1"> Execute</div>
+  </div>
+
+  <div class="checkbox-group">
+    <label><strong>Group</strong></label>
+    <div><input type="checkbox" class="group" value="4"> Read</div>
+    <div><input type="checkbox" class="group" value="2"> Write</div>
+    <div><input type="checkbox" class="group" value="1"> Execute</div>
+  </div>
+
+  <div class="checkbox-group">
+    <label><strong>Others</strong></label>
+    <div><input type="checkbox" class="others" value="4"> Read</div>
+    <div><input type="checkbox" class="others" value="2"> Write</div>
+    <div><input type="checkbox" class="others" value="1"> Execute</div>
+  </div>
+
+  <div>
+    <label for="chmod-input">Chmod Value:</label>
+    <input type="text" id="chmod-input" placeholder="e.g., 755">
+  </div>
+
+  <button id="calculate">Calculate</button>
+
+  <div class="result">
+    <p><strong>Result:</strong></p>
+    <p>Decimal: <span id="decimal"></span></p>
+    <p>Symbolic: <span id="symbolic"></span></p>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#calculate").on("click", function () {
+        calculateChmod();
+      });
+
+      function calculateChmod() {
+        let decimal = 0;
+        let symbolic = '';
+
+        $(".checkbox-group").each(function () {
+          const checkboxClass = $(this).find("input[type='checkbox']");
+          const value = checkboxClass.filter(":checked").map(function () {
+            return $(this).val();
+          }).get().join('');
+
+          decimal += parseInt(value, 10);
+          symbolic += getSymbolicValue(value);
+        });
+
+        $("#decimal").text(decimal);
+        $("#symbolic").text(symbolic);
+      }
+
+      function getSymbolicValue(value) {
+        const mapping = { '4': 'r', '2': 'w', '1': 'x' };
+        return value.split('').map(function (digit) {
+          return mapping[digit];
+        }).join('');
+      }
+    });
+  </script>
+
+</body>
+</html>
