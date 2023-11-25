@@ -1,110 +1,114 @@
+import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 
-$(function(){
-	
-  
-	function calculatePermissions() {
-		var ownerRead;
-		var ownerWrite;
-		var ownerExecute;
-
-		var groupRead;
-		var groupWrite;
-		var groupExecute;
-
-		var othersRead;
-		var othersWrite;
-		var othersExecute;
-	  // Calculate owner permissions
-	  ownerRead = $("#owner-read").prop("checked") ? 4 : 0;
-	  ownerWrite = $("#owner-write").prop("checked") ? 2 : 0;
-	  ownerExecute = $("#owner-execute").prop("checked") ? 1 : 0;
-  
-	  // Calculate group permissions
-	  groupRead = $("#group-read").prop("checked") ? 4 : 0;
-	  groupWrite = $("#group-write").prop("checked") ? 2 : 0;
-	  groupExecute = $("#group-execute").prop("checked") ? 1 : 0;
-  
-	  // Calculate others permissions
-	  othersRead = $("#others-read").prop("checked") ? 4 : 0;
-	  othersWrite = $("#others-write").prop("checked") ? 2 : 0;
-	  othersExecute = $("#others-execute").prop("checked") ? 1 : 0;
-  
-	  // Calculate the total permissions
-	  var owner = ownerRead + ownerWrite + ownerExecute;
-	  var group = groupRead + groupWrite + groupExecute;
-	  var others = othersRead + othersWrite + othersExecute;
-  
-	  var all = owner +""+ group +""+ others;
-  
-	  // Update the displayed total permissions
-	  $("#chmod-input-1").val(all); 
-	}
-  
-	// Event listeners for checkbox changes
-	$(".checks input[type='checkbox']").change(function() {
-	  calculatePermissions();
-	});
-  
-	// Initial calculation on page load
-	calculatePermissions();
-
-
-	
-  
-	function writePermissions() {
-		var ownerRead;
-		var ownerWrite;
-		var ownerExecute;
-
-		var groupRead;
-		var groupWrite;
-		var groupExecute;
-
-		var othersRead;
-		var othersWrite;
-		var othersExecute;
-
-	  // Write owner permissions
-	  ownerRead = $("#owner-read").prop("checked") ? "r" : "-";
-	  ownerWrite = $("#owner-write").prop("checked") ? "w" : "-";
-	  ownerExecute = $("#owner-execute").prop("checked") ? "x" : "-";
-  
-	  // Write group permissions
-	  groupRead = $("#group-read").prop("checked") ? "r" : "-";
-	  groupWrite = $("#group-write").prop("checked") ? "w" : "-";
-	  groupExecute = $("#group-execute").prop("checked") ? "x" : "-";
-  
-	  // Write others permissions
-	  othersRead = $("#others-read").prop("checked") ? "r" : "-";
-	  othersWrite = $("#others-write").prop("checked") ? "w" : "-";
-	  othersExecute = $("#others-execute").prop("checked") ? "x" : "-";
-  
-	  // Write the total permissions
-	  var owner = ownerRead + ownerWrite + ownerExecute;
-	  var group = groupRead + groupWrite + groupExecute;
-	  var others = othersRead + othersWrite + othersExecute;
-  
-	  var all = owner + group + others;
-  
-	  // Update the displayed total permissions
-	  $("#chmod-input-2").val(all);
-	}
-  
-	// Event listeners for checkbox changes
-	$(".checks input[type='checkbox']").change(function() {
-	  writePermissions();
-	});
-  
-	// Initial permissions on page load
-	writePermissions();
-
-  });
-  
-
 function ChmodCalculator() {
-	return (
-	  <div>
+  useEffect(() => {
+    // Your jQuery code goes here
+    $(function(){
+	
+  
+		function calculatePermissions() {
+			var ownerRead;
+			var ownerWrite;
+			var ownerExecute;
+	
+			var groupRead;
+			var groupWrite;
+			var groupExecute;
+	
+			var othersRead;
+			var othersWrite;
+			var othersExecute;
+		  // Calculate owner permissions
+		  ownerRead = $("#owner-read").prop("checked") ? 4 : 0;
+		  ownerWrite = $("#owner-write").prop("checked") ? 2 : 0;
+		  ownerExecute = $("#owner-execute").prop("checked") ? 1 : 0;
+	  
+		  // Calculate group permissions
+		  groupRead = $("#group-read").prop("checked") ? 4 : 0;
+		  groupWrite = $("#group-write").prop("checked") ? 2 : 0;
+		  groupExecute = $("#group-execute").prop("checked") ? 1 : 0;
+	  
+		  // Calculate others permissions
+		  othersRead = $("#others-read").prop("checked") ? 4 : 0;
+		  othersWrite = $("#others-write").prop("checked") ? 2 : 0;
+		  othersExecute = $("#others-execute").prop("checked") ? 1 : 0;
+	  
+		  // Calculate the total permissions
+		  var owner = ownerRead + ownerWrite + ownerExecute;
+		  var group = groupRead + groupWrite + groupExecute;
+		  var others = othersRead + othersWrite + othersExecute;
+	  
+		  var all = owner +""+ group +""+ others;
+	  
+		  // Update the displayed total permissions
+		  $("#chmod-input-1").val(all); 
+		}
+	  
+		// Event listeners for checkbox changes
+		$(".checks input[type='checkbox']").change(function() {
+		  calculatePermissions();
+		});
+	  
+		// Initial calculation on page load
+		calculatePermissions();
+	
+	
+		
+	  
+		function writePermissions() {
+			var ownerRead;
+			var ownerWrite;
+			var ownerExecute;
+	
+			var groupRead;
+			var groupWrite;
+			var groupExecute;
+	
+			var othersRead;
+			var othersWrite;
+			var othersExecute;
+	
+		  // Write owner permissions
+		  ownerRead = $("#owner-read").prop("checked") ? "r" : "-";
+		  ownerWrite = $("#owner-write").prop("checked") ? "w" : "-";
+		  ownerExecute = $("#owner-execute").prop("checked") ? "x" : "-";
+	  
+		  // Write group permissions
+		  groupRead = $("#group-read").prop("checked") ? "r" : "-";
+		  groupWrite = $("#group-write").prop("checked") ? "w" : "-";
+		  groupExecute = $("#group-execute").prop("checked") ? "x" : "-";
+	  
+		  // Write others permissions
+		  othersRead = $("#others-read").prop("checked") ? "r" : "-";
+		  othersWrite = $("#others-write").prop("checked") ? "w" : "-";
+		  othersExecute = $("#others-execute").prop("checked") ? "x" : "-";
+	  
+		  // Write the total permissions
+		  var owner = ownerRead + ownerWrite + ownerExecute;
+		  var group = groupRead + groupWrite + groupExecute;
+		  var others = othersRead + othersWrite + othersExecute;
+	  
+		  var all = owner + group + others;
+	  
+		  // Update the displayed total permissions
+		  $("#chmod-input-2").val(all);
+		}
+	  
+		// Event listeners for checkbox changes
+		$(".checks input[type='checkbox']").change(function() {
+		  writePermissions();
+		});
+	  
+		// Initial permissions on page load
+		writePermissions();
+	
+	  });
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  return (
+    <div>
 		<main className='chmod-main-grid'>
 			<div className="secure" bis_skin_checked="1"><p>Chmod Calculator</p></div>
   			
@@ -136,8 +140,7 @@ function ChmodCalculator() {
 
       	</main>
 	  </div>
-	);
-  }
-  
-  export default ChmodCalculator;
-  
+  );
+}
+
+export default ChmodCalculator;

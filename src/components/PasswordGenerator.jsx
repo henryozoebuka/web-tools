@@ -1,60 +1,57 @@
-/* eslint-disable no-unused-vars */
+import React, { useEffect } from 'react';/* eslint-disable no-unused-vars */
 import $ from 'jquery';
-
-$(document).ready(() => {
-  let progressBar = $("#progress-bar");
-  let slider = $("#slider");
-  slider.val(16);
-  progressBar.css("width", (slider.val()/45)*100 + "%");
-
-  // Add an event handler to adjust the progress-bar width when the slider value changes
-  slider.on('input', function () {
-    progressBar.css("width", (slider.val()/45)*100 + "%");
-  });
-});
-
-// Password generation section
-
-function generatePassword() {
-  const length = $('#slider').val();
-  const includeNumbers = $('#include-numbers').is(':checked');
-  const includeUppercase = $('#include-uppercase').is(':checked');
-  const includeLowercase = $('#include-lowercase').is(':checked');
-  const excludeSimilar = $('#exclude-similar').is(':checked');
-
-  let charset = '';
-  let password = '';
-
-  if (includeNumbers) charset += '0123456789';
-  if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  if (includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
-
-  if (excludeSimilar) {
-    charset = charset.replace(/[iloIO]/g, ''); // Excluding similar characters
-  }
-
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    password += charset.charAt(randomIndex);
-  }
-
-  $('#generated-password').val(password);
-}
-
-$(document).ready(function() {
-  $('#slider').on('input', function() {
-    $('#slider-value').text($(this).val());
-  });
-
-  $('#generate-password').on('click', function() {
-    generatePassword();
-  });
-});
-
 
 
 
 function PasswordGenerator() {
+  // Function to generate password
+  function generatePassword() {
+    const length = $('#slider').val();
+    const includeNumbers = $('#include-numbers').is(':checked');
+    const includeUppercase = $('#include-uppercase').is(':checked');
+    const includeLowercase = $('#include-lowercase').is(':checked');
+    const excludeSimilar = $('#exclude-similar').is(':checked');
+
+    let charset = '';
+    let password = '';
+
+    if (includeNumbers) charset += '0123456789';
+    if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    if (includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
+
+    if (excludeSimilar) {
+      charset = charset.replace(/[iloIO]/g, ''); // Excluding similar characters
+    }
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * charset.length);
+      password += charset.charAt(randomIndex);
+    }
+
+    $('#generated-password').val(password);  // Your password generation logic here
+  }
+
+  useEffect(() => {
+    // jQuery code for setting up password generation functionality
+    let progressBar = $("#progress-bar");
+    let slider = $("#slider");
+    slider.val(16);
+    progressBar.css("width", (slider.val() / 45) * 100 + "%");
+
+    // Add an event handler to adjust the progress-bar width when the slider value changes
+    slider.on('input', function () {
+      progressBar.css("width", (slider.val() / 45) * 100 + "%");
+    });
+
+    $('#slider').on('input', function () {
+      $('#slider-value').text($(this).val());
+    });
+
+    $('#generate-password').on('click', function () {
+      generatePassword();
+    });
+  }, []); // Empty dependency array ensures this runs only once on mount
+
   return (
     <div>
       <main className="main align-items-center" >
@@ -78,20 +75,21 @@ function PasswordGenerator() {
         </div>
 
         <div className="row container mt-5 d-ib-main">
-          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" /> Singles</div>
-          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-numbers"/> Numbers</div>
-          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-uppercase"/> Uppercase</div>
-          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-lowercase"/> Lowercase</div>
+          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="single"/><label htmlFor="single">Single</label></div>
+          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-numbers"/><label htmlFor="include-numbers">Numbers</label></div>
+          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-uppercase"/><label htmlFor="include-uppercase">Uppercase</label></div>
+          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-lowercase"/><label htmlFor="include-lowercase">Lowercase</label></div>
         </div>
 
         <div className="row container check-text mt-4 mb-5 d-ib-main">
-          <div className="col-12 d-flex"><input type="checkbox" className="mr-2" id="exclude-similar"/> Exclude Similar Characters</div>
+          <div className="col-12 d-flex"><input type="checkbox" className="mr-2" id="exclude-similar"/><label htmlFor="exclude-similar">Exclude Similar Characters</label></div>
         </div>
       </main>
     
-    </div>
+    </div>    // Your JSX for the Password Generator component
   );
 }
+
 
 export default PasswordGenerator;
 

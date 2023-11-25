@@ -1,52 +1,50 @@
-import $ from "jquery";
-
-
-function epochTimeRead(){
-  var now = Math.floor(Date.now() / 1000);
-  return $("#epoch-time").val(now);
-}
-
-setInterval(epochTimeRead, 1000);
-
-epochTimeRead();
-
-var time = Math.floor(Date.now() / 1000);
-
-$(document).ready(()=>{
-
-  
-  $("#tth").on("click", () => {
-    var timeConvert = $("#time-convert").val();
-    var date = new Date(timeConvert * 1000); // Assuming timeConvert is in seconds
-  
-    var options = {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      timeZoneName: 'short'
-    };
-  
-    var formattedDate = date.toLocaleString('en-US', options);
-    $("#human-date-converted").text(formattedDate);
-    $("#human-date-converted").css("color", "white");
-  });
-  
-  
-});
-
-
-
-//convertEpochTime();
-
-  
+import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
 
 function UnixStampConverter() {
-    return (
-      <div>
+  var time = Math.floor(Date.now() / 1000);
+  useEffect(() => {
+    function epochTimeRead(){
+      var now = Math.floor(Date.now() / 1000);
+      return $("#epoch-time").val(now);
+    }
+    
+    setInterval(epochTimeRead, 1000);
+    
+    epochTimeRead();
+
+    
+    $(document).ready(()=>{
+    
+      
+      $("#tth").on("click", () => {
+        var timeConvert = $("#time-convert").val();
+        var date = new Date(timeConvert * 1000); // Assuming timeConvert is in seconds
+      
+        var options = {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+          timeZoneName: 'short'
+        };
+      
+        var formattedDate = date.toLocaleString('en-US', options);
+        $("#human-date-converted").text(formattedDate);
+        $("#human-date-converted").css("color", "white");
+      });
+      
+      
+    });
+    
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  return (
+    <div>
   
         <main className="main align-items-center" >
           <div className="secure"><p>Unix Stamp Converter</p></div>
@@ -73,7 +71,7 @@ function UnixStampConverter() {
         </main>      
   
       </div>
-    );
-  }
-  
-  export default UnixStampConverter;
+  );
+}
+
+export default UnixStampConverter;

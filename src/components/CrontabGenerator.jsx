@@ -1,301 +1,265 @@
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import $ from "jquery";
-
-//$(document).on("click", (event) => {
-//  const selectMinutes = $("#select-minutes")[0]; // Retrieve the DOM element
-
-  //if (event.target === selectMinutes) {
-    //$(".minutes-div").toggle();
-  //} else {
-    //$(".minutes-div").hide();
-  //}
-//});
-
-/*$("#select-minutes").on("click", () => {
-  const minutesDiv = $(".minutes-div");
-  const selectMinutes = $("#select-minutes");
-  const windowHeight = $(window).height();
-  const selectBottom = selectMinutes.offset().top + selectMinutes.outerHeight();
-  const divHeight = minutesDiv.outerHeight();
-  const spaceBelow = windowHeight - selectBottom;
-
-  if (spaceBelow < divHeight) {
-      // Display above if there isn't enough space below
-      minutesDiv.css({ top: "auto", bottom: "100%" }).toggle();
-      
-  } else {
-      // Display below if there is enough space
-      minutesDiv.css({ top: "100%", bottom: "auto" }).toggle();
-      
-  }
-});*/
-
-
-
-$(document).ready(() =>{
-    var ceToggle = $(".ce-toggle");
-    var ceExamples = $(".ce-examples");
-    ceToggle.on("click", () =>{
-        ceExamples.toggle();
-    });
-
-    // For Minutes
-    $("#select-minutes").on("click", () =>{
-        $(".minutes-div").toggle();
-    });
-
-    
-
-
-    $("#minutes-close").on("click", () =>{
-      $(".minutes-div").hide();
-    });
-
-    $(document).on("mouseup", function (e) { 
-      if ($(e.target).closest(".minutes-div").length === 0) {
-        $(".minutes-div").hide();
-      } 
-    });
-
-
-    $('#check-all-minutes').click(function() {
-      var minutesCheckboxes = $('.minutes-checkboxes input');
-      if ($(this).is(':checked')) {
-        minutesCheckboxes.prop('checked', true).trigger('change');
-      } else {
-        minutesCheckboxes.prop('checked', false).trigger('change');
-      }
-    });
-  
-  
-    // Event listener for the change event of checkboxes
-    $('.minutes-checkboxes > div input').change(function() {
-      var selectedCheckboxes = $('.minutes-checkboxes > div input:checked');
-      var select = $("#select-minutes");
-
-      if (selectedCheckboxes.length === 0) {
-          // No checkboxes are selected, set the label to "custom period"
-          select.text('Custom period');
-      } else if (selectedCheckboxes.length <= 3) {
-          // Set the label's text to a comma-separated list of selected checkboxes' IDs
-          var selectedIDs = selectedCheckboxes.map(function() {
-              return $(this).attr('id');
-          }).get().join(', ');
-
-          select.text(selectedIDs);
-      } else {
-          // Set the label's text to display the number of selected items
-          select.text(selectedCheckboxes.length + ' items selected');
-      }
-    });
-
-
-
-
-    // For Hours
-    $("#select-hours").on("click", () =>{
-      $(".hours-div").toggle();
-    });
-
-    $("#hours-close").on("click", () =>{
-      $(".hours-div").toggle();
-    });
-
-    $(document).mouseup(function (e) { 
-      if ($(e.target).closest(".hours-div").length === 0) {
-        $(".hours-div").hide();
-      } 
-    });
-
-    $('#check-all-hours').click(function() {
-      var hoursCheckboxes = $('.hours-checkboxes input');
-      if ($(this).is(':checked')) {
-        hoursCheckboxes.prop('checked', true).trigger('change');
-      } else {
-        hoursCheckboxes.prop('checked', false).trigger('change');
-      }
-    });
-  
-  
-    // Event listener for the change event of checkboxes
-    $('.hours-checkboxes > div input').change(function() {
-      var selectedCheckboxes = $('.hours-checkboxes > div input:checked');
-      var select = $("#select-hours");
-
-      if (selectedCheckboxes.length === 0) {
-          // No checkboxes are selected, set the label to "custom period"
-          select.text('Custom period');
-      } else if (selectedCheckboxes.length <= 3) {
-          // Set the label's text to a comma-separated list of selected checkboxes' IDs
-          var selectedIDs = selectedCheckboxes.map(function() {
-              return $(this).attr('id');
-          }).get().join(', ');
-
-          select.text(selectedIDs);
-      } else {
-          // Set the label's text to display the number of selected items
-          select.text(selectedCheckboxes.length + ' items selected');
-      }
-    });
-
-
-
-    // For Days
-    $("#select-days").on("click", () =>{
-      $(".days-div").toggle();
-    });
-
-    $("#days-close").on("click", () =>{
-      $(".days-div").toggle();
-    });
-
-    $(document).mouseup(function (e) { 
-      if ($(e.target).closest(".days-div").length === 0) {
-        $(".days-div").hide();
-      } 
-    });
-
-    $('#check-all-days').click(function() {
-      var daysCheckboxes = $('.days-checkboxes input');
-      if ($(this).is(':checked')) {
-        daysCheckboxes.prop('checked', true).trigger('change');
-      } else {
-        daysCheckboxes.prop('checked', false).trigger('change');
-      }
-    });
-  
-  
-    // Event listener for the change event of checkboxes
-    $('.days-checkboxes > div input').change(function() {
-      var selectedCheckboxes = $('.days-checkboxes > div input:checked');
-      var select = $("#select-days");
-
-      if (selectedCheckboxes.length === 0) {
-          // No checkboxes are selected, set the label to "custom period"
-          select.text('Custom period');
-      } else if (selectedCheckboxes.length <= 3) {
-          // Set the label's text to a comma-separated list of selected checkboxes' IDs
-          var selectedIDs = selectedCheckboxes.map(function() {
-              return $(this).attr('id');
-          }).get().join(', ');
-
-          select.text(selectedIDs);
-      } else {
-          // Set the label's text to display the number of selected items
-          select.text(selectedCheckboxes.length + ' items selected');
-      }
-    });
-
-
-
-    // For Months
-    $("#select-months").on("click", () =>{
-      $(".months-div").toggle();
-    });
-
-    $("#months-close").on("click", () =>{
-      $(".months-div").toggle();
-    });
-
-    $(document).mouseup(function (e) { 
-      if ($(e.target).closest(".months-div").length === 0) {
-        $(".months-div").hide();
-      } 
-    });
-
-    $('#check-all-months').click(function() {
-      var monthsCheckboxes = $('.months-checkboxes input');
-      if ($(this).is(':checked')) {
-        monthsCheckboxes.prop('checked', true).trigger('change');
-      } else {
-        monthsCheckboxes.prop('checked', false).trigger('change');
-      }
-    });
-  
-  
-    // Event listener for the change event of checkboxes
-    $('.months-checkboxes > div input').change(function() {
-      var selectedCheckboxes = $('.months-checkboxes > div input:checked');
-      var select = $("#select-months");
-
-      if (selectedCheckboxes.length === 0) {
-          // No checkboxes are selected, set the label to "custom period"
-          select.text('Custom period');
-      } else if (selectedCheckboxes.length <= 3) {
-          // Set the label's text to a comma-separated list of selected checkboxes' IDs
-          var selectedIDs = selectedCheckboxes.map(function() {
-              return $(this).attr('id');
-          }).get().join(', ');
-
-          select.text(selectedIDs);
-      } else {
-          // Set the label's text to display the number of selected items
-          select.text(selectedCheckboxes.length + ' items selected');
-      }
-    });
-
-
-
-        // For Weekday
-        $("#select-weekday").on("click", () =>{
-          $(".weekday-div").toggle();
-        });
-
-        $("#weekday-close").on("click", () =>{
-          $(".weekday-div").toggle();
-        });
-
-        $(document).mouseup(function (e) { 
-      if ($(e.target).closest(".weekday-div").length === 0) {
-        $(".weekday-div").hide();
-      } 
-    });
-    
-        $('#check-all-weekday').click(function() {
-          var weekdayCheckboxes = $('.weekday-checkboxes input');
-          if ($(this).is(':checked')) {
-            weekdayCheckboxes.prop('checked', true).trigger('change');
-          } else {
-            weekdayCheckboxes.prop('checked', false).trigger('change');
-          }
-        });
-      
-      
-        // Event listener for the change event of checkboxes
-        $('.weekday-checkboxes > div input').change(function() {
-          var selectedCheckboxes = $('.weekday-checkboxes > div input:checked');
-          var select = $("#select-weekday");
-    
-          if (selectedCheckboxes.length === 0) {
-              // No checkboxes are selected, set the label to "custom period"
-              select.text('Custom period');
-          } else if (selectedCheckboxes.length <= 3) {
-              // Set the label's text to a comma-separated list of selected checkboxes' IDs
-              var selectedIDs = selectedCheckboxes.map(function() {
-                  return $(this).attr('id');
-              }).get().join(', ');
-    
-              select.text(selectedIDs);
-          } else {
-              // Set the label's text to display the number of selected items
-              select.text(selectedCheckboxes.length + ' items selected');
-          }
-        });
-
-
-
-
-
-    
-});
-
-
-
-
+import $ from 'jquery';
 
 function CrontabGenerator() {
-    return (
-      <div>
+  useEffect(() => {
+    // Your jQuery code goes here
+    $(document).ready(() =>{
+      var ceToggle = $(".ce-toggle");
+      var ceExamples = $(".ce-examples");
+      ceToggle.on("click", () =>{
+          ceExamples.toggle();
+      });
+  
+      // For Minutes
+      $("#select-minutes").on("click", () =>{
+          $(".minutes-div").toggle();
+      });
+  
+      
+  
+  
+      $("#minutes-close").on("click", () =>{
+        $(".minutes-div").hide();
+      });
+  
+      $(document).on("mouseup", function (e) { 
+        if ($(e.target).closest(".minutes-div").length === 0) {
+          $(".minutes-div").hide();
+        } 
+      });
+  
+  
+      $('#check-all-minutes').click(function() {
+        var minutesCheckboxes = $('.minutes-checkboxes input');
+        if ($(this).is(':checked')) {
+          minutesCheckboxes.prop('checked', true).trigger('change');
+        } else {
+          minutesCheckboxes.prop('checked', false).trigger('change');
+        }
+      });
+    
+    
+      // Event listener for the change event of checkboxes
+      $('.minutes-checkboxes > div input').change(function() {
+        var selectedCheckboxes = $('.minutes-checkboxes > div input:checked');
+        var select = $("#select-minutes");
+  
+        if (selectedCheckboxes.length === 0) {
+            // No checkboxes are selected, set the label to "custom period"
+            select.text('Custom period');
+        } else if (selectedCheckboxes.length <= 3) {
+            // Set the label's text to a comma-separated list of selected checkboxes' IDs
+            var selectedIDs = selectedCheckboxes.map(function() {
+                return $(this).attr('id');
+            }).get().join(', ');
+  
+            select.text(selectedIDs);
+        } else {
+            // Set the label's text to display the number of selected items
+            select.text(selectedCheckboxes.length + ' items selected');
+        }
+      });
+  
+  
+  
+  
+      // For Hours
+      $("#select-hours").on("click", () =>{
+        $(".hours-div").toggle();
+      });
+  
+      $("#hours-close").on("click", () =>{
+        $(".hours-div").toggle();
+      });
+  
+      $(document).mouseup(function (e) { 
+        if ($(e.target).closest(".hours-div").length === 0) {
+          $(".hours-div").hide();
+        } 
+      });
+  
+      $('#check-all-hours').click(function() {
+        var hoursCheckboxes = $('.hours-checkboxes input');
+        if ($(this).is(':checked')) {
+          hoursCheckboxes.prop('checked', true).trigger('change');
+        } else {
+          hoursCheckboxes.prop('checked', false).trigger('change');
+        }
+      });
+    
+    
+      // Event listener for the change event of checkboxes
+      $('.hours-checkboxes > div input').change(function() {
+        var selectedCheckboxes = $('.hours-checkboxes > div input:checked');
+        var select = $("#select-hours");
+  
+        if (selectedCheckboxes.length === 0) {
+            // No checkboxes are selected, set the label to "custom period"
+            select.text('Custom period');
+        } else if (selectedCheckboxes.length <= 3) {
+            // Set the label's text to a comma-separated list of selected checkboxes' IDs
+            var selectedIDs = selectedCheckboxes.map(function() {
+                return $(this).attr('id');
+            }).get().join(', ');
+  
+            select.text(selectedIDs);
+        } else {
+            // Set the label's text to display the number of selected items
+            select.text(selectedCheckboxes.length + ' items selected');
+        }
+      });
+  
+  
+  
+      // For Days
+      $("#select-days").on("click", () =>{
+        $(".days-div").toggle();
+      });
+  
+      $("#days-close").on("click", () =>{
+        $(".days-div").toggle();
+      });
+  
+      $(document).mouseup(function (e) { 
+        if ($(e.target).closest(".days-div").length === 0) {
+          $(".days-div").hide();
+        } 
+      });
+  
+      $('#check-all-days').click(function() {
+        var daysCheckboxes = $('.days-checkboxes input');
+        if ($(this).is(':checked')) {
+          daysCheckboxes.prop('checked', true).trigger('change');
+        } else {
+          daysCheckboxes.prop('checked', false).trigger('change');
+        }
+      });
+    
+    
+      // Event listener for the change event of checkboxes
+      $('.days-checkboxes > div input').change(function() {
+        var selectedCheckboxes = $('.days-checkboxes > div input:checked');
+        var select = $("#select-days");
+  
+        if (selectedCheckboxes.length === 0) {
+            // No checkboxes are selected, set the label to "custom period"
+            select.text('Custom period');
+        } else if (selectedCheckboxes.length <= 3) {
+            // Set the label's text to a comma-separated list of selected checkboxes' IDs
+            var selectedIDs = selectedCheckboxes.map(function() {
+                return $(this).attr('id');
+            }).get().join(', ');
+  
+            select.text(selectedIDs);
+        } else {
+            // Set the label's text to display the number of selected items
+            select.text(selectedCheckboxes.length + ' items selected');
+        }
+      });
+  
+  
+  
+      // For Months
+      $("#select-months").on("click", () =>{
+        $(".months-div").toggle();
+      });
+  
+      $("#months-close").on("click", () =>{
+        $(".months-div").toggle();
+      });
+  
+      $(document).mouseup(function (e) { 
+        if ($(e.target).closest(".months-div").length === 0) {
+          $(".months-div").hide();
+        } 
+      });
+  
+      $('#check-all-months').click(function() {
+        var monthsCheckboxes = $('.months-checkboxes input');
+        if ($(this).is(':checked')) {
+          monthsCheckboxes.prop('checked', true).trigger('change');
+        } else {
+          monthsCheckboxes.prop('checked', false).trigger('change');
+        }
+      });
+    
+    
+      // Event listener for the change event of checkboxes
+      $('.months-checkboxes > div input').change(function() {
+        var selectedCheckboxes = $('.months-checkboxes > div input:checked');
+        var select = $("#select-months");
+  
+        if (selectedCheckboxes.length === 0) {
+            // No checkboxes are selected, set the label to "custom period"
+            select.text('Custom period');
+        } else if (selectedCheckboxes.length <= 3) {
+            // Set the label's text to a comma-separated list of selected checkboxes' IDs
+            var selectedIDs = selectedCheckboxes.map(function() {
+                return $(this).attr('id');
+            }).get().join(', ');
+  
+            select.text(selectedIDs);
+        } else {
+            // Set the label's text to display the number of selected items
+            select.text(selectedCheckboxes.length + ' items selected');
+        }
+      });
+  
+  
+  
+          // For Weekday
+          $("#select-weekday").on("click", () =>{
+            $(".weekday-div").toggle();
+          });
+  
+          $("#weekday-close").on("click", () =>{
+            $(".weekday-div").toggle();
+          });
+  
+          $(document).mouseup(function (e) { 
+        if ($(e.target).closest(".weekday-div").length === 0) {
+          $(".weekday-div").hide();
+        } 
+      });
+      
+          $('#check-all-weekday').click(function() {
+            var weekdayCheckboxes = $('.weekday-checkboxes input');
+            if ($(this).is(':checked')) {
+              weekdayCheckboxes.prop('checked', true).trigger('change');
+            } else {
+              weekdayCheckboxes.prop('checked', false).trigger('change');
+            }
+          });
+        
+        
+          // Event listener for the change event of checkboxes
+          $('.weekday-checkboxes > div input').change(function() {
+            var selectedCheckboxes = $('.weekday-checkboxes > div input:checked');
+            var select = $("#select-weekday");
+      
+            if (selectedCheckboxes.length === 0) {
+                // No checkboxes are selected, set the label to "custom period"
+                select.text('Custom period');
+            } else if (selectedCheckboxes.length <= 3) {
+                // Set the label's text to a comma-separated list of selected checkboxes' IDs
+                var selectedIDs = selectedCheckboxes.map(function() {
+                    return $(this).attr('id');
+                }).get().join(', ');
+      
+                select.text(selectedIDs);
+            } else {
+                // Set the label's text to display the number of selected items
+                select.text(selectedCheckboxes.length + ' items selected');
+            }
+          });      
+  });
+  
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  return (
+    <div>
   
         <main className="main-cron mb-5" >
           <div className="secure"><p>Crontab Generator</p></div>
@@ -571,7 +535,7 @@ function CrontabGenerator() {
   .
 
       </div>
-    );
-  }
-  
-  export default CrontabGenerator;
+  );
+}
+
+export default CrontabGenerator;
