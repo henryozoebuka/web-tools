@@ -49,7 +49,7 @@ function Header() {
               </ul>
           </div>
           <div className="github-btn">
-              <Link to="/"><i className="bi bi-github pr-1"></i>   GitHub</Link>
+              <Link to="https://github.com/henryozoebuka/web-tools"><i className="bi bi-github pr-1"></i>   GitHub</Link>
           </div>
         
         </nav>

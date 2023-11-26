@@ -16,7 +16,20 @@ function UnixStampConverter() {
 
     
     $(document).ready(()=>{
-    
+      
+
+    $('#copy-epoch-time').on('click', function() {
+      // Select the text input field
+      var epochTimeInput = $('#epoch-time');
+      
+      // Select the text inside the input field
+      epochTimeInput.select();
+      
+      // Copy the selected text to the clipboard
+      document.execCommand('copy');
+    });
+
+      
       
       $("#tth").on("click", () => {
         var timeConvert = $("#time-convert").val();
@@ -51,7 +64,7 @@ function UnixStampConverter() {
           <div className="row mt-5 main-grid utc-1 mb-4">
             <div className="col-md-7 col-sm-12 col-12 d-flex justify-content-start"><p>The current Unix epoch time:</p></div>
             <div className="col-md-3 col-sm-6 col-12 d-flex justify-content-center mb-3"><input type="text" className="w-100" id="epoch-time"/></div>
-            <div className="col-md-2 col-sm-6 col-12 d-flex justify-content-center"><a href="/" className="px-3 py-1 d-flex justify-content-center"><i className="bi bi-copy w-100"></i> Copy</a></div>
+            <div className="col-md-2 col-sm-6 col-12 d-flex justify-content-center"><button className="mt-md-5 mt-2 row" id="copy-epoch-time"><i className="bi bi-copy col-1 p-0"></i><p className="col-11">copy</p></button></div>
           </div>
           <div className="row mb-4 main-grid utc-2">
             <div className="col-md-7 col-sm-6 col-12 d-flex justify-content-center mb-3"><input type="text" className="w-100 h-100" defaultValue={time} id="time-convert"/></div>

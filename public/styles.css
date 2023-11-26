@@ -387,14 +387,19 @@ input[type="radio"]:checked {
 }
 #date-picker {
     height: 100%;
+    color: #ffffff;
 }
 
-#generate-password, #copy-password {
+#generate-password, #copy-password, #copy-epoch-time {
     background-color:#ffd54f;
     width: 100%;
     height: 35px;
     border-radius: 2px;
     border: none;
+}
+
+#copy-epoch-time p {
+    color: #000000;
 }
 
 .link-pad {
@@ -658,6 +663,10 @@ input[type="range"]{
     position: absolute;
     top: 15px;
     left: 0;    
+}
+
+input[type="range"]:hover {
+    cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb{

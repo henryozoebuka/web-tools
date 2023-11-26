@@ -7,6 +7,7 @@ function PasswordGenerator() {
   // Function to generate password
   function generatePassword() {
     const length = $('#slider').val();
+    const includeSymbols = $('#include-symbols').is(':checked');
     const includeNumbers = $('#include-numbers').is(':checked');
     const includeUppercase = $('#include-uppercase').is(':checked');
     const includeLowercase = $('#include-lowercase').is(':checked');
@@ -15,6 +16,7 @@ function PasswordGenerator() {
     let charset = '';
     let password = '';
 
+    if (includeSymbols) charset += '!@#$%^&*()_+-={}[]|\\:;"\'<>,.?/';
     if (includeNumbers) charset += '0123456789';
     if (includeUppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     if (includeLowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
@@ -36,6 +38,11 @@ function PasswordGenerator() {
     let progressBar = $("#progress-bar");
     let slider = $("#slider");
     slider.val(16);
+    $('#include-symbols').prop('checked', true);
+    $('#include-numbers').prop('checked', true);
+    $('#include-uppercase').prop('checked', true);
+    $('#include-lowercase').prop('checked', true);
+    
     progressBar.css("width", (slider.val() / 45) * 100 + "%");
 
     // Add an event handler to adjust the progress-bar width when the slider value changes
@@ -50,8 +57,40 @@ function PasswordGenerator() {
     $('#generate-password').on('click', function () {
       generatePassword();
     });
-  }, []); // Empty dependency array ensures this runs only once on mount
+    $('#slider').on('input', function () {
+      generatePassword();
+    });
+    $('#include-symbols').on('change', function () {
+      generatePassword();
+    });
+    $('#include-numbers').on('change', function () {
+      generatePassword();
+    });
+    $('#include-uppercase').on('change', function () {
+      generatePassword();
+    });
+    $('#include-lowercase').on('change', function () {
+      generatePassword();
+    });
+    $('#exclude-similar').on('change', function () {
+      generatePassword();
+    });
 
+  }, []); // Empty dependency array ensures this runs only once on mount
+  
+$(document).ready(()=>{
+  generatePassword();
+  $('#copy-password').on('click', function() {
+    // Select the text input field
+    var generatePasswordInput = $('#generated-password');
+    
+    // Select the text inside the input field
+    generatePasswordInput.select();
+    
+    // Copy the selected text to the clipboard
+    document.execCommand('copy');
+  });
+});
   return (
     <div>
       <main className="main align-items-center" >
@@ -75,7 +114,7 @@ function PasswordGenerator() {
         </div>
 
         <div className="row container mt-5 d-ib-main">
-          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="single"/><label htmlFor="single">Single</label></div>
+          <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-symbols"/><label htmlFor="symbols">Symbols</label></div>
           <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-numbers"/><label htmlFor="include-numbers">Numbers</label></div>
           <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-uppercase"/><label htmlFor="include-uppercase">Uppercase</label></div>
           <div className="col-sm-3 check-text d-ib d-flex mb-3"><input type="checkbox" className="mr-2" id="include-lowercase"/><label htmlFor="include-lowercase">Lowercase</label></div>
