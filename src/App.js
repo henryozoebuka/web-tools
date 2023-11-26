@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PasswordGenerator from './components/PasswordGenerator';
@@ -9,8 +8,8 @@ import UnixStampConverter from './components/UnixStampConverter';
 
 function App() {
   return (
-    <Router>
-        <Header />
+    <Router basename={process.env.PUBLIC_URL}>
+      <Header />
       <Routes>
         <Route exact path="/" element={<PasswordGenerator />} />
         <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
