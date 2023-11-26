@@ -11,11 +11,11 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route exact path="/" element={<PasswordGenerator />} />
-        <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
+        <Route exact path="/" element={<ChmodCalculator />} />
         <Route path="/ChmodCalculator" element={<ChmodCalculator />} />
         <Route path="/CrontabGenerator" element={<CrontabGenerator />} />
         <Route path="/UnixStampConverter" element={<UnixStampConverter />} />
+        <Route path="/PasswordGenerator" element={<PasswordGenerator />} />
       </Routes>
     </Router>
   );
