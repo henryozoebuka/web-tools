@@ -96,7 +96,7 @@ $(document).ready(()=>{
       <main className="main align-items-center" >
         <div className="secure"><p>Secure Password Generator</p></div>
         <div className="row container" id="main-content">
-          <div className="col-12 col-sm-12 col-md-8 d-flex align-items-center mt-5"><input type="text" id="generated-password"/></div>
+          <div className="col-12 col-sm-12 col-md-8 d-flex align-items-center mt-5 utc-1"><input type="text" id="generated-password"/></div>
           <div className="col-12 col-sm-6 col-md-2 my-2 d-flex justify-content-center"><button className="mt-md-5 mt-2 row" id="copy-password"><i className="bi bi-copy col-1 p-0"></i><p className="col-11">copy</p></button></div>
           <div className="col-12 col-sm-6 col-md-2 my-2 d-flex justify-content-center"><button className="mt-md-5 mt-2 row" id="generate-password"><i className="bi bi-arrow-clockwise col-1 p-0"></i> <p className="col-11">Generate</p></button></div>
         </div>

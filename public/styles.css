@@ -176,7 +176,7 @@ input[type="radio"]:checked {
     border-radius: 25px;
     background-color: #383838;
     border: none;
-    height: 30px;
+    height: 35px;
 }
 
 .utc-1 a {
@@ -767,6 +767,12 @@ input[type="range"]::-webkit-slider-thumb:hover{
         width: auto;
     }
 
+}
+
+@media (max-width: 575px){
+    .unix-input {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 350px){

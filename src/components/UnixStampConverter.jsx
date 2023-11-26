@@ -62,9 +62,9 @@ function UnixStampConverter() {
         <main className="main align-items-center" >
           <div className="secure"><p>Unix Stamp Converter</p></div>
           <div className="row mt-5 main-grid utc-1 mb-4">
-            <div className="col-md-7 col-sm-12 col-12 d-flex justify-content-start"><p>The current Unix epoch time:</p></div>
-            <div className="col-md-3 col-sm-6 col-12 d-flex justify-content-center mb-3"><input type="text" className="w-100" id="epoch-time"/></div>
-            <div className="col-md-2 col-sm-6 col-12 d-flex justify-content-center"><button className="mt-md-5 mt-2 row" id="copy-epoch-time"><i className="bi bi-copy col-1 p-0"></i><p className="col-11">copy</p></button></div>
+            <div className="col-md-7 col-sm-12 col-12 d-flex justify-content-start align-items-left"><p className='p-0'>The current Unix epoch time:</p></div>
+            <div className="col-md-3 col-sm-6 col-12 d-flex justify-content-center align-items-center unix-input"><input type="text" className="w-100 d-flex align-items-center" id="epoch-time"/></div>
+            <div className="col-md-2 col-sm-6 col-12 d-flex justify-content-center align-items-center"><button className="row" id="copy-epoch-time"><i className="bi bi-copy col-1 p-0"></i><p className="col-11">copy</p></button></div>
           </div>
           <div className="row mb-4 main-grid utc-2">
             <div className="col-md-7 col-sm-6 col-12 d-flex justify-content-center mb-3"><input type="text" className="w-100 h-100" defaultValue={time} id="time-convert"/></div>
