@@ -8,7 +8,7 @@ import UnixStampConverter from './components/UnixStampConverter';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Header />
       <Routes>
         <Route exact path="/" element={<PasswordGenerator />} />
